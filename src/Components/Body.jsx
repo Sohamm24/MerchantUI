@@ -1,107 +1,79 @@
-import React from "react";
-import image1 from "../assets/image1.png";
-import Community from "../assets/Community.png";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Group36 from "../assets/Group36.png";
+import IndiaPost from "../assets/IndiaPost.png";
+import './Body.css';
 
 export default function Body() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate(); // Hook to navigate
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const handleSellProducts = () => {
+    closeModal(); // Close the modal
+    navigate('/sell-products'); // Navigate to SellProducts page
+  };
+
+  const handleOfferService = () => {
+    closeModal(); // Close the modal
+    navigate('/offer-service'); // Navigate to OfferService page
+  };
+
   return (
     <div>
       <div className="img_container">
-        <img src={image1} className="background_image" alt="Background" />
-        <div className="background_overlay"></div>
-        <div className="text_overlay">
-          <div className="banner">
-            <div className="banner-text">
-              <h1>
-                Stay Connected to the Heart of India, No Matter Where You Are
-              </h1>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non
-                quis veritatis ab, quisquam deserunt recusandae pariatur animi
-                cum eos qui?
-              </p>
-            </div>
-          </div>
-          <div className="community">
-            <img className="Community_image" src={Community} alt="Community" />
-            <a className="community_link" href="#">
-              Your Community
-            </a>
+        <div className="img_left">
+          <img src={Group36} alt="Image" />
+        </div>
+        <div className="text_right">
+          <h2>Expand your reach by selling products and services to NRIs through our platform, designed to enhance visibility and drive growth</h2>
+          <div className="button_container">
+            <button className="left_button" onClick={openModal}>Start</button>
+            <button className="right_button">Guidance</button>
           </div>
         </div>
       </div>
 
-      <div className="button_container">
-        <div className="button">
-          <a href="#online-services">Online Services</a>
+      <div className="status_container">
+        <div className="status_heading">
+          <h2>Check and Track status of your Products and Services</h2>
         </div>
-        <div className="button">
-          <a href="#trending-sensations">Trending Sensations Of India</a>
-        </div>
-        <div className="button">
-          <a href="#about-us">About Us</a>
+        <div className="status_buttons">
+          <button>Analyse Buyers</button>
+          <button>Offer Discount</button>
+          <button>Messages</button>
         </div>
       </div>
 
-      <div className="section_container">
-        <div className="section">
-          <h2>Trending</h2>
-          <div className="section_content">
-            <div className="section_item">
-              <img src="" alt="Trending" />
-              <div className="section_text">
-                <p>Discover the latest trends and sensations in India.</p>
-              </div>
-            </div>
-            <div className="section_item">
-              <img src="" alt="Trending" />
-              <div className="section_text">
-                <p>Discover the latest trends and sensations in India.</p>
-              </div>
-            </div>
-            <div className="section_item">
-              <img src="" alt="Trending" />
-              <div className="section_text">
-                <p>Discover the latest trends and sensations in India.</p>
-              </div>
-            </div>
-            <div className="section_item">
-              <img src="" alt="Trending" />
-              <div className="section_text">
-                <p>Discover the latest trends and sensations in India.</p>
-              </div>
-            </div>
-          </div>
+      <div className="info_section">
+        <div className="info_image">
+          <img src={IndiaPost} alt="Image" />
         </div>
-        <div className="section">
-          <h2>Recommendation</h2>
-          <div className="section_content">
-            <div className="section_item">
-              <img src="" alt="Recommendation" />
-              <div className="section_text">
-                <p>Get personalized recommendations based on your interests.</p>
-              </div>
-            </div>
-            <div className="section_item">
-              <img src="" alt="Recommendation" />
-              <div className="section_text">
-                <p>Get personalized recommendations based on your interests.</p>
-              </div>
-            </div>
-            <div className="section_item">
-              <img src="" alt="Recommendation" />
-              <div className="section_text">
-                <p>Get personalized recommendations based on your interests.</p>
-              </div>
-            </div>
-            <div className="section_item">
-              <img src="" alt="Recommendation" />
-              <div className="section_text">
-                <p>Get personalized recommendations based on your interests.</p>
-              </div>
-            </div>
-          </div>
+        <div className="info_text">
+          <p>
+          Inventory shows what merchants or service providers have listed. Use "Promotion" to boost visibility, and "Charges" for the current subscription plans of portal
+          </p>
+        </div>
+        <div className="info_buttons">
+          <button className="vertical_button">Inventory</button>
+          <button className="vertical_button">Promotion Help</button>
+          <button className="vertical_button">Charges</button>
         </div>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modal_overlay" onClick={closeModal}>
+          <div className="modal_content" onClick={e => e.stopPropagation()}>
+            <button className="close_button" onClick={closeModal}>X</button>
+            <h2>Proceed ahead</h2>
+            <button className="m1" onClick={handleSellProducts}>Sell products</button>
+            <button className="m2" onClick={handleOfferService}>Offer Service</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

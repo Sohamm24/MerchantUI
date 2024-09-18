@@ -17,19 +17,8 @@ body {
     font-weight: bold;
   }
   
-  .search-bar {
-    flex-grow: 1;
-    justify-content: center;
-    display: flex;
-  }
+
   
-  .search-bar input {
-    width: 40%;
-    padding: 7px;
-    margin-left: 550px;
-    border-radius: 5px;
-    border: 2px solid black;
-  }
   
   .account-button {
     margin-right: 200px;
